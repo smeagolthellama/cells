@@ -23,7 +23,7 @@ minetest.register_abm({
 			for y=pos.y-1,pos.y+1 do
 				for z=pos.z-1,pos.z+1 do
 					if not( x==pos.x and y==pos.y and z==pos.z) then
-						local node=minetest.get_node({x,y,z})
+						local node=minetest.get_node({x=x,y=y,z=z})
 						if node.name=="cells:cell" then
 							count=count+1
 						end
@@ -32,7 +32,7 @@ minetest.register_abm({
 			end
 		end
 		if count<env_min or count>env_max then
-			minetest.remove_node(pos)
+			minetest.set_node(pos,{name="air"})
 		end
 	end
 })
@@ -48,7 +48,7 @@ minetest.register_abm({
 			for y=pos.y-1,pos.y+1 do
 				for z=pos.z-1,pos.z+1 do
 					if not( x==pos.x and y==pos.y and z==pos.z) then
-						local node=minetest.get_node({x,y,z})
+						local node=minetest.get_node({x=x,y=y,z=z})
 						if node.name=="cells:cell" then
 							count=count+1
 						end

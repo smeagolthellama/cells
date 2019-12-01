@@ -19,18 +19,8 @@ minetest.register_abm({
 	action = function(pos,node,active_object_count,active_object_count_wider)
 		local pos= {x=pos.x,y=pos.y,z=pos.z}
 		local count=0
-		for x=pos.x-1,pos.x+1 do
-			for y=pos.y-1,pos.y+1 do
-				for z=pos.z-1,pos.z+1 do
-					if not( x==pos.x and y==pos.y and z==pos.z) then
-						local node=minetest.get_node({x=x,y=y,z=z})
-						if node.name=="cells:cell" then
-							count=count+1
-						end
-					end	
-				end
-			end
-		end
+		local pos_arr,count_arr = minetest.find_nodes_in_area(vector.add(pos,-1),vector.add(pos,1),{"cells:cell"})
+		count=count_arr["cells:cell"]
 		if count<env_min or count>env_max then
 			minetest.set_node(pos,{name="air"})
 		end
@@ -44,18 +34,8 @@ minetest.register_abm({
 	action = function(pos,node,active_object_count,active_object_count_wider)
 		local pos= {x=pos.x,y=pos.y,z=pos.z}
 		local count=0
-		for x=pos.x-1,pos.x+1 do
-			for y=pos.y-1,pos.y+1 do
-				for z=pos.z-1,pos.z+1 do
-					if not( x==pos.x and y==pos.y and z==pos.z) then
-						local node=minetest.get_node({x=x,y=y,z=z})
-						if node.name=="cells:cell" then
-							count=count+1
-						end
-					end	
-				end
-			end
-		end
+		local pos_arr,count_arr = minetest.find_nodes_in_area(vector.add(pos,-1),vector.add(pos,1),{"cells:cell"})
+		count=count_arr["cells:cell"]
 		if count>fer_min and count<fer_max then
 			minetest.set_node(pos,{name="cells:cell"})
 		end

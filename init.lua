@@ -22,7 +22,7 @@ minetest.register_abm({
 		local pos_arr,count_arr = minetest.find_nodes_in_area(vector.add(pos,-1),vector.add(pos,1),{"cells:cell"})
 		count=count_arr["cells:cell"]
 		if count<env_min or count>env_max then
-			minetest.set_node(pos,{name="air"})
+			minetest.after(0.5,minetest.set_node(pos,{name="air"}))
 		end
 	end
 })
@@ -37,7 +37,7 @@ minetest.register_abm({
 		local pos_arr,count_arr = minetest.find_nodes_in_area(vector.add(pos,-1),vector.add(pos,1),{"cells:cell"})
 		count=count_arr["cells:cell"]
 		if count>fer_min and count<fer_max then
-			minetest.set_node(pos,{name="cells:cell"})
+			minetest.after(0.5,minetest.set_node(pos,{name="cells:cell"}))
 		end
 	end
 })
